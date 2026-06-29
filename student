@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+class Library {
+    private String bookName;
+    private boolean isIssued;
+
+    Library(String bookName) {
+        this.bookName = bookName;
+        this.isIssued = false;
+    }
+
+    public void displayBook() {
+        System.out.println("Book: " + bookName);
+        if (isIssued) {
+            System.out.println("Status: Issued");
+        } else {
+            System.out.println("Status: Available");
+        }
+    }
+
+    public void issueBook() {
+        if (!isIssued) {
+            isIssued = true;
+            System.out.println(bookName + " issued successfully.");
+        } else {
+            System.out.println("Book already issued.");
+        }
+    }
+
+    public void returnBook() {
+        if (isIssued) {
+            isIssued = false;
+            System.out.println(bookName + " returned successfully.");
+        } else {
+            System.out.println("Book was not issued.");
+        }
+    }
+}
+
+public class LibraryManagement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Library book = new Library("Java Programming");
+
+        int choice;
+
+        do {
+            System.out.println("\n1. Display Book");
+            System.out.println("2. Issue Book");
+            System.out.println("3. Return Book");
+            System.out.println("4. Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    book.displayBook();
+                    break;
+                case 2:
+                    book.issueBook();
+                    break;
+                case 3:
+                    book.returnBook();
+                    break;
+                case 4:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+        } while (choice != 4);
+    }
+}
